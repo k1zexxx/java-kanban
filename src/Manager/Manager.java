@@ -1,3 +1,10 @@
+package Manager;
+
+import Status.Status;
+import Tasks.EpicTask;
+import Tasks.SubTask;
+import Tasks.Task;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
