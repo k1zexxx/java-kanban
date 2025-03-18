@@ -1,5 +1,5 @@
 package tasks;
-
+import status.Status;
 
 public class Task {
     private String name;

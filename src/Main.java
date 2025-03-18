@@ -27,8 +27,8 @@ public class Main {
         SubTask subTask3 = new SubTask(epicTask2.getId(), "Молоко", "Деревня", Status.NEW);
         manager.createSubTask(subTask3);
 
-        System.out.println("Задача " + task.getId() + ": " + task.getName());
-        System.out.println("Задача " + task2.getId() + ": " + task2.getName());
+        System.out.println(String.format("Задача %d: %s", task.getId(), task.getName()));
+        System.out.println(String.format("Задача %d: %s", task2.getId(), task2.getName()));
         System.out.println(epicTask1.toString());
         System.out.println(epicTask2.toString());
         System.out.println(subTask1.toString());
@@ -42,8 +42,5 @@ public class Main {
         manager.deleteSubTaskId(subTask1.getId());
         System.out.println(epicTask1.toString());
     }
-
-
-
-
+    
 }
