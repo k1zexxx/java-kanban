@@ -1,4 +1,6 @@
-import manager.Manager;
+import interfaces.TaskManager;
+import manager.InMemoryTaskManager;
+import manager.Managers;
 import status.Status;
 import tasks.EpicTask;
 import tasks.SubTask;
@@ -7,7 +9,7 @@ import tasks.Task;
 public class Main {
 
     public static void main(String[] args) {
-        Manager manager = new Manager();
+        TaskManager manager = Managers.getDefault();
         Task task = new Task("Переезд", "собрать вещи", Status.NEW);
         manager.createTask(task);
         task.toString();
@@ -41,6 +43,11 @@ public class Main {
         System.out.println("После удаления подзадачи");
         manager.deleteSubTaskId(subTask1.getId());
         System.out.println(epicTask1.toString());
+        System.out.println("");
+
+        InMemoryTaskManager.printAllTasks(manager);
     }
-    
+
+
+
 }

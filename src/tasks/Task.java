@@ -1,4 +1,5 @@
 package tasks;
+
 import status.Status;
 
 public class Task {
@@ -6,6 +7,7 @@ public class Task {
     private String description;
     private Status status;
     private int id;
+
 
     public Task(String name, String description, Status status){
         this.name = name;
@@ -36,4 +38,13 @@ public class Task {
     public void setStatus(Status status) {
         this.status = status;
     }
+
+    @Override
+    public String toString(){
+        return "Tasks.EpicTask {" + '\''
+                + "name = " + getName() + '\''
+                + " descritpion = " + getDescription() + '\''
+                + " status = " + getStatus() + "} ";
+    }
+
 }

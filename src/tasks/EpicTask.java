@@ -1,12 +1,14 @@
 package tasks;
+
 import status.Status;
 import java.util.ArrayList;
 
 
+
 public class EpicTask extends Task {
 
-
     private ArrayList<Integer> subTasksId;
+
 
     public EpicTask(String name, String description, Status status){
         super(name, description,status);
@@ -24,6 +26,7 @@ public class EpicTask extends Task {
     public void deleteSubTasId(int subTaskId){
         subTasksId.remove((Integer) subTaskId);
     }
+
 
     @Override
     public String toString(){
