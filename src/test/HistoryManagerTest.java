@@ -15,9 +15,11 @@ public class HistoryManagerTest {
 
     @Test
     public void add() {
-        Task task = new Task("Переезд", "собрать вещи", Status.NEW);
-        historyManager.add(task);
-        final List<Task> history = historyManager.getHistory();
+        Task task1 = new Task("Переезд", "собрать вещи", Status.NEW);
+        Task task2 = new Task("Переезд", "собрать вещи", Status.NEW);
+        historyManager.add(task1);
+        historyManager.add(task2);
+        final List<Task> history = historyManager.getTasks();
         Assertions.assertNotNull(history, "История не пустая.");
         Assertions.assertEquals(1, history.size(), "История не пустая.");
     }
