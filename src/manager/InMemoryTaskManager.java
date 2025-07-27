@@ -196,7 +196,7 @@ public class InMemoryTaskManager implements TaskManager  {
         manager.getEpicTasksId(3);
 
         System.out.println("История:");
-        System.out.println(historyManager.getHistory());
+        System.out.println(historyManager.getTasks());
     }
 
 }

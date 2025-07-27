@@ -6,7 +6,7 @@ import tasks.Task;
 import java.util.*;
 
 public class InMemoryHistoryManager implements HistoryManager {
-    private List<Task> tasks = new ArrayList<>();
+    //private List<Task> tasks = new ArrayList<>();
     private HashMap<Integer, Node> historyForTasks = new HashMap<>();
     private Node head;
     private Node tail;
@@ -17,7 +17,7 @@ public class InMemoryHistoryManager implements HistoryManager {
     public void add(Task task) {
         //if (task == null) return;
 
-        remove(task.getId()-1);
+        remove(task.getId());
 
         linkLast(task);
     }
@@ -31,40 +31,36 @@ public class InMemoryHistoryManager implements HistoryManager {
         }
     }
 
-   @Override
+   /*@Override
     public List<Task> getHistory() {
         return tasks;
-    }
+    }*/
 
     private void linkLast(Task task){
+        final Node oldTail = tail;
         final Node newNode = new Node(task, tail, null);
 
-        if (tail == null){
+        if (oldTail == null){
             head = newNode;
         } else {
-            tail.next = newNode;
+            oldTail.next = newNode;
         }
 
         tail = newNode;
-        size++;
         historyForTasks.put(task.getId(), newNode);
-        getTasks();
+        //getTasks();
     }
 
     @Override
-    public void getTasks(){
-       List<Task> tasks = new ArrayList<>();
+    public List<Task> getTasks(){
+        List<Task> tasks = new ArrayList<>();
         Node current = head;
-        //System.out.println(historyForTasks.get(1));
         while (current != null) {
-
-
-            //System.out.println(current.task);
             tasks.add(current.task);
             System.out.println(tasks);
-            current = current.prev;
+            current = current.next;
         }
-
+        return tasks;
     }
 
     private void removeNode(Node node){
@@ -73,16 +69,13 @@ public class InMemoryHistoryManager implements HistoryManager {
             node.prev.next = node.next;
         } else {
             head = node.next;
-            //size--;
         }
 
         if (node.next != null) {
             node.next.prev = node.prev;
         } else {
             tail = node.prev;
-            //size--;
         }
-        size --;
     }
 }
 
