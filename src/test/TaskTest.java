@@ -8,10 +8,6 @@ import org.junit.jupiter.api.Test;
 import status.Status;
 import tasks.Task;
 
-
-
-
-
 public class TaskTest {
     TaskManager manager = Managers.getDefault();
     HistoryManager historyManager = Managers.getDefaultHistory();
