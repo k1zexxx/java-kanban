@@ -21,10 +21,12 @@ public class TaskTest {
         task1.setId(1);
         Assertions.assertEquals(manager.getTasksId(task.getId()), manager.getTasksId(task1.getId()));
     }
+    
     @Test
     public void testMenegersNotNull(){
         Assertions.assertNotNull(manager);
     }
+
     @Test
     public void testTaskConflictId(){
         Task task1 = new Task("Переезд", "собрать вещи", Status.NEW);
