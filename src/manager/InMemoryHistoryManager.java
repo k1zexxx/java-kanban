@@ -6,19 +6,14 @@ import tasks.Task;
 import java.util.*;
 
 public class InMemoryHistoryManager implements HistoryManager {
-    //private List<Task> tasks = new ArrayList<>();
     private HashMap<Integer, Node> historyForTasks = new HashMap<>();
     private Node head;
     private Node tail;
-    private int size = 0;
 
 
     @Override
     public void add(Task task) {
-        //if (task == null) return;
-
         remove(task.getId());
-
         linkLast(task);
     }
 
@@ -30,11 +25,6 @@ public class InMemoryHistoryManager implements HistoryManager {
             removeNode(node);
         }
     }
-
-   /*@Override
-    public List<Task> getHistory() {
-        return tasks;
-    }*/
 
     private void linkLast(Task task){
         final Node oldTail = tail;
@@ -48,7 +38,6 @@ public class InMemoryHistoryManager implements HistoryManager {
 
         tail = newNode;
         historyForTasks.put(task.getId(), newNode);
-        //getTasks();
     }
 
     @Override
