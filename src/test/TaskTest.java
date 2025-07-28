@@ -13,7 +13,7 @@ public class TaskTest {
     HistoryManager historyManager = Managers.getDefaultHistory();
 
     @Test
-    public void testForTask(){
+    public void testForTask() {
         Task task = new Task("Переезд", "собрать вещи", Status.NEW);
         manager.createTask(task);
         Task task1 = new Task("Помыть машину", "Описание", Status.NEW);
@@ -21,14 +21,14 @@ public class TaskTest {
         task1.setId(1);
         Assertions.assertEquals(manager.getTasksId(task.getId()), manager.getTasksId(task1.getId()));
     }
-    
+
     @Test
-    public void testMenegersNotNull(){
+    public void testMenegersNotNull() {
         Assertions.assertNotNull(manager);
     }
 
     @Test
-    public void testTaskConflictId(){
+    public void testTaskConflictId() {
         Task task1 = new Task("Переезд", "собрать вещи", Status.NEW);
         manager.createTask(task1);
         Task task2 = new Task("Помыть машину", "Описание", Status.NEW);
