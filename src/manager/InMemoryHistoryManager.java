@@ -21,7 +21,7 @@ public class InMemoryHistoryManager implements HistoryManager {
     public void remove(int id) {
         Node node = historyForTasks.remove(id);
 
-        if (node != null){
+        if (node != null) {
             removeNode(node);
         }
     }
@@ -54,7 +54,7 @@ public class InMemoryHistoryManager implements HistoryManager {
 
     private void removeNode(Node node) {
 
-        if (node.prev != null){
+        if (node.prev != null) {
             node.prev.next = node.next;
         } else {
             head = node.next;
