@@ -45,5 +45,7 @@ public interface TaskManager<T> {
 
     ArrayList<SubTask> getSubTaskList(int epicId);
 
-    static void printAllTasks(TaskManager<Task> manager) {}
+    static void printAllTasks(TaskManager<Task> manager) {
+
+    }
 }
