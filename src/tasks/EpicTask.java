@@ -23,7 +23,7 @@ public class EpicTask extends Task {
         subTasksId.add(subTaskId);
     }
 
-    public void deleteSubTasId(int subTaskId){
+    public void deleteSubTasId(int subTaskId) {
         subTasksId.remove((Integer) subTaskId);
     }
 
