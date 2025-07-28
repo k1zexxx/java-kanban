@@ -28,6 +28,6 @@ public class EpicTaskTest {
         EpicTask task = new EpicTask("Переезд", "собрать вещи", Status.NEW);
         manager.createTask(task);
         Task epicTask = new EpicTask( "Помыть машину", "Описание", Status.NEW);
-        Assertions.assertThrows(ClassCastException.class,() -> manager.createSubTask((SubTask) epicTask));
+        Assertions.assertThrows(ClassCastException.class, () -> manager.createSubTask((SubTask) epicTask));
     }
 }
