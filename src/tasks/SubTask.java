@@ -1,5 +1,6 @@
 package tasks;
 import status.Status;
+
 public class SubTask extends Task {
     int code;
 
@@ -13,7 +14,7 @@ public class SubTask extends Task {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Tasks.SubTask {"
                 + "name = " + getName() + '\''
                 + " descritpion = " + getDescription() + '\''
