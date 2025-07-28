@@ -70,7 +70,7 @@ public class InMemoryTaskManager implements TaskManager  {
     @Override
     public void deleteSubTask() {
         subTasks.clear();
-        for (EpicTask epicTask : epicTasks.values()){
+        for (EpicTask epicTask : epicTasks.values()) {
             epicTask.getSubTasksId().clear();
             updateStatusEpicTask(epicTask);
         }
@@ -140,34 +140,34 @@ public class InMemoryTaskManager implements TaskManager  {
     public ArrayList<SubTask> getSubTaskList(int epicId) {
         EpicTask epicTask = epicTasks.get(epicId);
         ArrayList<SubTask> subTaskList = new ArrayList<>();
-        for (int subTaskid : epicTask.getSubTasksId()){
+        for (int subTaskid : epicTask.getSubTasksId()) {
             subTaskList.add(subTasks.get(subTaskid));
         }
         return subTaskList;
     }
 
     private void updateStatusEpicTask(EpicTask epicTask) {
-        boolean Done = true;
-        boolean New = true;
+        boolean statDone = true;
+        boolean statNew = true;
 
-        if (epicTask.getSubTasksId().isEmpty()){
+        if (epicTask.getSubTasksId().isEmpty()) {
             epicTask.setStatus(Status.NEW);
         }
         ArrayList<Integer> subTaskIds = epicTask.getSubTasksId();
 
-        for (int subTaskId : subTaskIds){
+        for (int subTaskId : subTaskIds) {
             SubTask subTask = subTasks.get(subTaskId);
-            if (subTask.getStatus() != Status.DONE){
-                Done = false;
+            if (subTask.getStatus() != Status.DONE) {
+                statDone = false;
             }
-            if (subTask.getStatus() != Status.NEW){
-                New = false;
+            if (subTask.getStatus() != Status.NEW) {
+                statNew = false;
             }
         }
 
-        if (Done){
+        if (statDone) {
             epicTask.setStatus(Status.DONE);
-        } else if (New) {
+        } else if (statNew) {
             epicTask.setStatus(Status.NEW);
         } else {
             epicTask.setStatus(Status.IN_PROGRESS);
