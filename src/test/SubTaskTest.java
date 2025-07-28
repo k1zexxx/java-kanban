@@ -1,6 +1,5 @@
 package test;
 
-import interfaces.HistoryManager;
 import interfaces.TaskManager;
 import manager.Managers;
 import org.junit.jupiter.api.Assertions;
@@ -14,7 +13,7 @@ public class SubTaskTest {
     TaskManager manager = Managers.getDefault();
 
     @Test
-    public void TestForSubTask(){
+    public void testForSubTask() {
         EpicTask task = new EpicTask("Переезд", "собрать вещи", Status.NEW);
         manager.createEpicTask(task);
         SubTask subTask = new SubTask(1, "собрать вещи", "положить куртку",Status.NEW);
@@ -25,7 +24,7 @@ public class SubTaskTest {
     }
 
     @Test
-    public void TestSubTaskDoEpicTask(){
+    public void testSubTaskDoEpicTask() {
         Task task = new SubTask(1, "Переезд", "собрать вещи", Status.NEW);
         Assertions.assertThrows(ClassCastException.class,() -> manager.createEpicTask((EpicTask) task));
     }

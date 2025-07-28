@@ -1,6 +1,5 @@
 package test;
 
-import interfaces.HistoryManager;
 import interfaces.TaskManager;
 import manager.Managers;
 import org.junit.jupiter.api.Assertions;
@@ -15,7 +14,7 @@ public class EpicTaskTest {
 
 
     @Test
-    public void TestForEpicTask(){
+    public void testForEpicTask() {
         EpicTask task = new EpicTask("Переезд", "собрать вещи", Status.NEW);
         manager.createEpicTask(task);
         EpicTask task1 = new EpicTask("Помыть машину", "Описание", Status.NEW);
@@ -25,7 +24,7 @@ public class EpicTaskTest {
     }
 
     @Test
-    public void TestEpicTaskAddEpicTask(){
+    public void testEpicTaskAddEpicTask() {
         EpicTask task = new EpicTask("Переезд", "собрать вещи", Status.NEW);
         manager.createTask(task);
         Task epicTask = new EpicTask( "Помыть машину", "Описание", Status.NEW);
