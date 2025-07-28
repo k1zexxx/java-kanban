@@ -40,7 +40,7 @@ public class Task {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Tasks.EpicTask {" + '\''
                 + "name = " + getName() + '\''
                 + " descritpion = " + getDescription() + '\''
