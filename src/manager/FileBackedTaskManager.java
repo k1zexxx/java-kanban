@@ -19,7 +19,9 @@ public class FileBackedTaskManager extends InMemoryTaskManager implements TaskMa
         this.file = file;
     }
 
-    public FileBackedTaskManager() {}
+    public FileBackedTaskManager() {
+
+    }
 
     public static FileBackedTaskManager loadFromFile(File file) {
         FileBackedTaskManager manager = new FileBackedTaskManager();
@@ -69,18 +71,12 @@ public class FileBackedTaskManager extends InMemoryTaskManager implements TaskMa
     String toString(Task task) {
         if (task instanceof SubTask) {
             SubTask subtask = (SubTask) task;
-            return String.format("%d,SUBTASK,%s,%s,%s,%d",
-                    subtask.getId(), subtask.getName(), subtask.getStatus(),
-                    subtask.getDescription(), subtask.getCode());
+            return String.format("%d,SUBTASK,%s,%s,%s,%d", subtask.getId(), subtask.getName(), subtask.getStatus(), subtask.getDescription(), subtask.getCode());
         } else if (task instanceof EpicTask) {
             EpicTask epic = (EpicTask) task;
-            return String.format("%d,EPIC,%s,%s,%s",
-                    epic.getId(), epic.getName(), epic.getStatus(),
-                    epic.getDescription());
+            return String.format("%d,EPIC,%s,%s,%s", epic.getId(), epic.getName(), epic.getStatus(), epic.getDescription());
         } else {
-            return String.format("%d,TASK,%s,%s,%s",
-                    task.getId(), task.getName(), task.getStatus(),
-                    task.getDescription());
+            return String.format("%d,TASK,%s,%s,%s", task.getId(), task.getName(), task.getStatus(), task.getDescription());
         }
     }
 
