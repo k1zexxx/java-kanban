@@ -61,7 +61,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager implements TaskMa
     }
 
     public void add() {
-        try (FileWriter writer = new FileWriter(file)){
+        try (FileWriter writer = new FileWriter(file)) {
             writer.write(content.toString());
         } catch (IOException ex) {
             throw new MatchException("Ошибка сохранения данных в файл", ex);
@@ -104,7 +104,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager implements TaskMa
             case SUBTASK:
                 if (fields.length > 5 && !fields[5].isEmpty()) {
                     int epicId = Integer.parseInt(fields[5].trim());
-                    SubTask subtask = new SubTask(epicId ,name, description, status);
+                    SubTask subtask = new SubTask(epicId, name, description, status);
                     subtask.setId(id);
                     return subtask;
                 }
