@@ -1,5 +1,3 @@
-package test;
-
 import manager.FileBackedTaskManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -10,8 +8,6 @@ import tasks.Task;
 
 import java.io.File;
 import java.io.IOException;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class FileBackedTaskManagerTest {
     File testFile = File.createTempFile("test_tasks", ".csv");
