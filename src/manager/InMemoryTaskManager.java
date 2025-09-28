@@ -90,14 +90,6 @@ public class InMemoryTaskManager implements TaskManager  {
 
     @Override
     public void deleteEpicTaskId(int id) {
-        /*EpicTask epicTask = epicTasks.remove(id);
-        if (epicTask != null) {
-            prioritizedTasks.remove(epicTask);
-            epicTask.getSubTasksId().stream()
-                    .map(subTasks::remove)
-                    .filter(Objects::nonNull)
-                    .forEach(prioritizedTasks::remove);
-        }*/
         epicTasks.remove(id);
     }
 
@@ -171,7 +163,7 @@ public class InMemoryTaskManager implements TaskManager  {
     @Override
     public void updateSubTask(SubTask subTask) {
         if (hasTimeOverlap(subTask)) {
-            throw new IllegalArgumentException("Задача " + subTask.getName() + " пересекается по времени с существующей задачей");
+            throw new IllegalArgumentException(String.format("Задача %s пересекается по времени с существующей задачей", subTask.getName()));
         }
         SubTask oldSubTask = subTasks.get(subTask.getId());
         if (oldSubTask != null) {
