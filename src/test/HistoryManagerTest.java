@@ -1,9 +1,7 @@
 package test;
 
 import interfaces.HistoryManager;
-import interfaces.TaskManager;
 import manager.Managers;
-import org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import status.Status;
