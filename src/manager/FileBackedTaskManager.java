@@ -125,7 +125,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager implements TaskMa
 
         switch (type) {
             case TASK:
-                Task task = new Task(name, description, status ,startTime, duration);
+                Task task = new Task(name, description, status , startTime, duration);
                 task.setId(id);
                 task.setStatus(status);
                 return task;
