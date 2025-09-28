@@ -1,8 +1,10 @@
 package tasks;
 
 import status.Status;
-import java.util.ArrayList;
 
+import java.time.Duration;
+import java.util.ArrayList;
+import java.time.LocalDateTime;
 
 
 public class EpicTask extends Task {
@@ -10,8 +12,13 @@ public class EpicTask extends Task {
     private ArrayList<Integer> subTasksId;
 
 
+    public EpicTask(String name, String description, Status status, LocalDateTime startTime, Duration duration) {
+        super(name, description,status, startTime, duration);
+        this.subTasksId = new ArrayList<>();
+    }
+
     public EpicTask(String name, String description, Status status) {
-        super(name, description,status);
+        super(name, description, status);
         this.subTasksId = new ArrayList<>();
     }
 

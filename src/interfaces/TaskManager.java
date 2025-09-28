@@ -5,6 +5,7 @@ import tasks.SubTask;
 import tasks.Task;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public interface TaskManager<T> {
     HashMap<Integer, T> getTasks();
@@ -48,4 +49,6 @@ public interface TaskManager<T> {
     static void printAllTasks(TaskManager<Task> manager) {
 
     }
+
+    List<T> getPrioritizedTasks();
 }
