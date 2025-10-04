@@ -5,12 +5,10 @@ import com.google.gson.GsonBuilder;
 import com.sun.net.httpserver.HttpExchange;
 import interfaces.TaskManager;
 import manager.Managers;
-import tasks.Task;
 
 import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.List;
 
 public class HistoryHandler extends BaseHttpHandler {
 
