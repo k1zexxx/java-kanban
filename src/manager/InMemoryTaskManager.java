@@ -252,6 +252,11 @@ public class InMemoryTaskManager implements TaskManager  {
                 .anyMatch(existingTask -> existingTask.isOverlapping(newTask));
     }
 
+    @Override
+    public List<Task> getHistory() {
+        return historyManager.getTasks();
+    }
+
     public static void printAllTasks(TaskManager<Task> manager) {
 
         System.out.println("Задачи:");
