@@ -14,8 +14,8 @@ import java.time.LocalDateTime;
 
 public class TaskHandler extends BaseHttpHandler {
     private Gson gson = new GsonBuilder()
-            .registerTypeAdapter(LocalDateTime .class, new LocalDateTimeAdapter())
-            .registerTypeAdapter(Duration .class, new DurationAdapter())
+            .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
+            .registerTypeAdapter(Duration.class, new DurationAdapter())
             .create();
     private TaskManager taskManager = Managers.getDefault();
 
