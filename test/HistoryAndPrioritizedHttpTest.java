@@ -48,6 +48,7 @@ public class HistoryAndPrioritizedHttpTest {
 
     @Test
     void testGetHistory() throws IOException, InterruptedException {
+        manager.deleteTask();
         Task task = new Task("Test Task", "Testing task", Status.NEW);
         manager.createTask(task);
         manager.getTasksId(task.getId()); // Добавляем в историю
