@@ -27,7 +27,7 @@ public class SubTaskHandler extends BaseHttpHandler {
             String path = exchange.getRequestURI().getPath();
             String[] pathParts = path.split("/");
             SubTask subTask;
-            
+
             switch (method) {
                 case "POST":
                     String body = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
