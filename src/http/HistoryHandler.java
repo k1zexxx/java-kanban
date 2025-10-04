@@ -24,8 +24,7 @@ public class HistoryHandler extends BaseHttpHandler {
     public void handle(HttpExchange exchange) throws IOException {
         try {
             if ("GET".equals(exchange.getRequestMethod())) {
-                List<Task> history = taskManager.getHistory();
-                sendText(exchange, gson.toJson(history), 200);
+                sendText(exchange, gson.toJson(taskManager.getHistory()), 200);
             } else {
                 sendNotFound(exchange);
             }

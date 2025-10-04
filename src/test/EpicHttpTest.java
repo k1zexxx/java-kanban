@@ -11,7 +11,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import status.Status;
-import tasks.Task;
+import tasks.EpicTask;
+import tasks.SubTask;
 
 import java.io.IOException;
 import java.net.URI;
@@ -20,10 +21,11 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class HistoryAndPrioritizedHttpTest {
+class EpicHttpTest {
     private TaskManager manager;
     private HttpTaskServer taskServer;
     private Gson gson;
@@ -32,7 +34,7 @@ public class HistoryAndPrioritizedHttpTest {
     @BeforeEach
     void setUp() throws IOException {
         manager = new InMemoryTaskManager();
-        taskServer = new HttpTaskServer(manager);
+        taskServer = new HttpTaskServer();
         gson = new GsonBuilder()
                 .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
                 .registerTypeAdapter(Duration.class, new DurationAdapter())
@@ -47,43 +49,40 @@ public class HistoryAndPrioritizedHttpTest {
     }
 
     @Test
-    void testGetHistory() throws IOException, InterruptedException {
-        Task task = new Task("Test Task", "Testing task", Status.NEW);
-        manager.createTask(task);
-        manager.getTasksId(task.getId());
+    void testAddEpic() throws IOException, InterruptedException {
+        EpicTask epic = new EpicTask("Test Epic", "Testing epic", Status.NEW);
+        String epicJson = gson.toJson(epic);
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/history"))
-                .GET()
+                .uri(URI.create("http://localhost:8080/epics"))
+                .POST(HttpRequest.BodyPublishers.ofString(epicJson))
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        assertEquals(200, response.statusCode());
+        assertEquals(201, response.statusCode());
 
-        Task[] history = gson.fromJson(response.body(), Task[].class);
-        assertEquals(2, history.length);
+        List<EpicTask> epicsFromManager = manager.getEpicTasks().values().stream().toList();
+        assertEquals(1, epicsFromManager.size());
+        assertEquals("Test Epic", epicsFromManager.get(0).getName());
     }
 
     @Test
-    void testGetPrioritized() throws IOException, InterruptedException {
-        Task task1 = new Task("Test Task 1", "Testing task 1", Status.NEW,
-                LocalDateTime.now().plusHours(1), Duration.ofMinutes(30));
-        Task task2 = new Task("Test Task 2", "Testing task 2", Status.NEW,
-                LocalDateTime.now().plusHours(2), Duration.ofMinutes(30));
-        manager.createTask(task1);
-        manager.createTask(task2);
+    void testGetEpicSubtasks() throws IOException, InterruptedException {
+        EpicTask epic = new EpicTask("Test Epic", "Testing epic", Status.NEW);
+        manager.createEpicTask(epic);
+
+        SubTask subTask = new SubTask(epic.getId(), "Test Subtask", "Testing subtask", Status.NEW);
+        manager.createSubTask(subTask);
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/prioritized"))
+                .uri(URI.create("http://localhost:8080/epics/" + epic.getId() + "/subtasks"))
                 .GET()
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         assertEquals(200, response.statusCode());
 
-        Task[] prioritized = gson.fromJson(response.body(), Task[].class);
-        assertEquals(2, prioritized.length);
-
+        SubTask[] subtasks = gson.fromJson(response.body(), SubTask[].class);
+        assertEquals(1, subtasks.length);
     }
 }
-
