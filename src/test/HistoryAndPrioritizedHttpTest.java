@@ -5,12 +5,8 @@ import com.google.gson.GsonBuilder;
 import http.DurationAdapter;
 import http.HttpTaskServer;
 import http.LocalDateTimeAdapter;
-import http.PrioritizedHandler;
-import interfaces.HistoryManager;
 import interfaces.TaskManager;
-import manager.InMemoryHistoryManager;
 import manager.InMemoryTaskManager;
-import manager.Managers;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +20,6 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
