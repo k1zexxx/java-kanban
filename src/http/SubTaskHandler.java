@@ -72,9 +72,11 @@ public class SubTaskHandler extends BaseHttpHandler {
                 default:
                     sendNotFound(exchange);
             }
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             if (e.getMessage().contains("пересекается")) {
                 sendHasInteractions(exchange);
+            } else {
+                sendText(exchange, e.getMessage(), 400);
             }
         }
     }

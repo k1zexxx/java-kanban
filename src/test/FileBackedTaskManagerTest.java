@@ -51,9 +51,4 @@ class FileBackedTaskManagerTest extends TaskManagerTest<FileBackedTaskManager> {
             manager.add(); // Попытка сохранить в невалидный путь
         });
     }
-
-
-
-
-
 }
